@@ -31,7 +31,7 @@ function insertNewRecord(data) {
     cell3.innerHTML = data.salary;
     cell4 = createRow.insertCell(4);
     cell4.innerHTML = `<a onClick="onEdit(this)">Edit</a>
-                        <a>Delete</a>`
+                        <a onClick="onDelete(this)">Delete</a>`
 }
 
 function resetForm() {
@@ -55,4 +55,12 @@ function updateUser(formData) {
     selectedRow.cells[1].innerHTML = formData.city;
     selectedRow.cells[2].innerHTML = formData.empCode;
     selectedRow.cells[3].innerHTML = formData.salary;
+}
+
+function onDelete(td) {
+    if (confirm('Delete User?')) {
+        row = td.parentElement.parentElement;
+        document.getElementById('employeeList').deleteRow(row.rowIndex);
+        resetForm();
+    }
 }
